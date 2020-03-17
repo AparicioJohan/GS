@@ -8,8 +8,6 @@ The GS is a shiny package that has been created to run cross validation using BG
 devtools::install_github("AparicioJohan/GS")
 ```
 
-...or...
-
 ``` r
 source("https://install-github.me/AparicioJohan/GS")
 ```
