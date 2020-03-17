@@ -89,7 +89,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#genomic-selection-" class="anchor"></a>Genomic Selection <img src="reference/figures/logo.png" width="120px" align="right">
 </h1></div>
-<p>The GS is a shiny package that has been created to run cross validation using BGLR - sommer - ASReml .</p>
+<p>The GS is a r-package that has been created to run cross validation using BGLR - sommer - ASReml packages. This allows you run CV by command line or with a user interface in shiny.</p>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
@@ -101,6 +101,18 @@
 <a href="#run-the-shiny-app" class="anchor"></a>Run the Shiny app</h2>
 <p>There’s only one exported function in the package and it runs the Shiny app:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">GS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/GS/man/GS_shiny.html">GS_shiny</a></span>()</a></code></pre></div>
+</div>
+<div id="command-line" class="section level2">
+<h2 class="hasAnchor">
+<a href="#command-line" class="anchor"></a>Command line</h2>
+<p>The code below shows how you can run the cross validation.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># geno &lt;- "imputed_rrBLUP.in"</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co"># samp &lt;- "imputed_rrBLUP_samples.txt"</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co"># phen &lt;- "Phenotypic_Analysis.csv"</span></a>
+<a class="sourceLine" id="cb4-4" title="4"></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co"># prior &lt;- c("ASReml", "RKHS", "sommer")</span></a>
+<a class="sourceLine" id="cb4-6" title="6"></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co"># out_table &lt;- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)</span></a></code></pre></div>
 </div>
 </div>
   </div>

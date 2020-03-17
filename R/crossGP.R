@@ -3,7 +3,7 @@
 #'
 #' \code{crossGP} returns the cross validation usign differents methodologies as implemented in GBLR, ASReml and sommer package.
 #'
-#' @param geno A string
+#' @param geno The name of the file which the data are to be read from (Marker Matrix -1,0,1)
 #' @param samp A string
 #' @param phen A string
 #' @param prior A string vector c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
