@@ -13,5 +13,5 @@ shiny interface
 user interface for running GS
 }
 \examples{
-GS_shiny()
+# GS_shiny()
 }

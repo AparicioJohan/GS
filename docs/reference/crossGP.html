@@ -166,13 +166,13 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
 <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
- <span class='no'>geno</span> <span class='kw'>&lt;-</span> <span class='st'>"imputed_rrBLUP.in"</span>
- <span class='no'>samp</span> <span class='kw'>&lt;-</span> <span class='st'>"imputed_rrBLUP_samples.txt"</span>
- <span class='no'>phen</span> <span class='kw'>&lt;-</span> <span class='st'>"Phenotypic_Analysis.csv"</span>
+ <span class='co'># geno &lt;- "imputed_rrBLUP.in"</span>
+ <span class='co'># samp &lt;- "imputed_rrBLUP_samples.txt"</span>
+ <span class='co'># phen &lt;- "Phenotypic_Analysis.csv"</span>
 
- <span class='no'>prior</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"ASReml"</span>, <span class='st'>"RKHS"</span>, <span class='st'>"sommer"</span>)
+ <span class='co'># prior &lt;- c("ASReml", "RKHS", "sommer")</span>
 
- <span class='no'>out_table</span> <span class='kw'>&lt;-</span> <span class='fu'>crossGP</span>(<span class='no'>geno</span>, <span class='no'>samp</span>, <span class='no'>phen</span>, <span class='no'>prior</span>, <span class='kw'>niter</span> <span class='kw'>=</span> <span class='fl'>2</span>, <span class='kw'>testporc</span> <span class='kw'>=</span> <span class='fl'>0.3</span>)
+ <span class='co'># out_table &lt;- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)</span>
 }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

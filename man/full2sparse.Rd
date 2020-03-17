@@ -16,5 +16,5 @@ full2sparse(mat)
 full2sparse
 }
 \examples{
- full2sparse(mat)
+ # full2sparse(mat)
 }

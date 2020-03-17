@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#'  full2sparse(mat)
+#'  # full2sparse(mat)
 "full2sparse" <- function(mat) {
   if (is.null(colnames(mat))) {
     colnames(mat) <- 1:ncol(mat)

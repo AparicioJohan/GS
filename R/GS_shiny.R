@@ -6,7 +6,7 @@
 #' @export
 #'
 #' @examples
-#' GS_shiny()
+#' # GS_shiny()
 GS_shiny <- function()
 {
   if (!requireNamespace(package = "shiny"))
