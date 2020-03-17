@@ -1,0 +1,35 @@
+Package: GS
+Title: Genomic Prediction
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Johan",
+           family = "Aparicio",
+           role = c("aut", "cre"),
+           email = "j.aparicio@cgiar.org",
+           comment = c(ORCID = "YOUR-ORCID-ID"))
+Description: Genomic prediction methodes as impletented BGLR package and also in asreml and sommer are possible to fit in GS.
+License: What license it uses
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.0.2
+Imports: 
+    dplyr,
+    asreml,
+    data.table,
+    ggplot2,
+    sommer,
+    BGLR,
+    readr,
+    tidyr,
+    magrittr,
+    shiny,
+    shinythemes,
+    shinyjs,
+    shinycssloaders,
+    shinyWidgets,
+    shinytoastr
+Suggests: 
+    knitr,
+    rmarkdown,
+    testthat
+VignetteBuilder: knitr
