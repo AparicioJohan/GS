@@ -29,7 +29,7 @@ list with two elements
 }
 \examples{
 
-\dontrun{
+ ####  Not run  ####
  # geno <- "imputed_rrBLUP.in"
  # samp <- "imputed_rrBLUP_samples.txt"
  # phen <- "Phenotypic_Analysis.csv"
@@ -37,5 +37,4 @@ list with two elements
  # prior <- c("ASReml", "RKHS", "sommer")
 
  # out_table <- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)
-}
 }

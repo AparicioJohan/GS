@@ -1,4 +1,4 @@
-# GS <img src="man/figures/logo.png" width="200px" align="right"/>
+# Genomic Selection <img src="man/figures/logo.png" width="120px" align="right"/>
 
 The GS is a shiny package that has been created to run cross validation using BGLR - sommer - ASReml .
 
