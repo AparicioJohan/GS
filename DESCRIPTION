@@ -5,8 +5,7 @@ Authors@R:
     person(given = "Johan",
            family = "Aparicio",
            role = c("aut", "cre"),
-           email = "j.aparicio@cgiar.org",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           email = "j.aparicio@cgiar.org")
 Description: Genomic prediction methodes as impletented BGLR package and also in asreml and sommer are possible to fit in GS.
 License: What license it uses
 Encoding: UTF-8
