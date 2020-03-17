@@ -2,10 +2,11 @@
 
 #' user interface for running GS
 #'
-#' @return
+#' @return shiny interface
 #' @export
 #'
 #' @examples
+#' GS_shiny()
 GS_shiny <- function()
 {
   if (!requireNamespace(package = "shiny"))

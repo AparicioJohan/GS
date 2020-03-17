@@ -15,3 +15,6 @@ full2sparse(mat)
 \description{
 full2sparse
 }
+\examples{
+ full2sparse(mat)
+}

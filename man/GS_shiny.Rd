@@ -7,8 +7,11 @@
 GS_shiny()
 }
 \value{
-
+shiny interface
 }
 \description{
 user interface for running GS
+}
+\examples{
+GS_shiny()
 }
