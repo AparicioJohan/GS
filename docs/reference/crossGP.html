@@ -100,6 +100,9 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
+      <a href="../articles/introduction.html">introduction</a>
+    </li>
+    <li>
       <a href="../articles/my-vignette.html">How to start</a>
     </li>
   </ul>
@@ -134,15 +137,7 @@
     <p><code>crossGP</code> returns the cross validation usign differents methodologies as implemented in GBLR, ASReml and sommer package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>crossGP</span>(
-  <span class='no'>geno</span>,
-  <span class='no'>samp</span>,
-  <span class='no'>phen</span>,
-  <span class='kw'>prior</span> <span class='kw'>=</span> <span class='st'>"sommer"</span>,
-  <span class='kw'>niter</span> <span class='kw'>=</span> <span class='fl'>50</span>,
-  <span class='kw'>testporc</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
-  <span class='kw'>traits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>crossGP</span>(<span class='no'>geno</span>, <span class='no'>samp</span>, <span class='no'>phen</span>, <span class='no'>prior</span>, <span class='kw'>niter</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>testporc</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>traits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -191,6 +186,14 @@
 # phen <- DT_cpdata
 
 # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = names(phen)[5])
+
+#-----------------------
+
+# geno <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP.in"
+# samp <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP_samples.txt"
+# phen <- "D:/OneDrive - CGIAR/2020/Phenotypic_Analysis.csv"
+
+# crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")
 
 </div></pre>
   </div>
