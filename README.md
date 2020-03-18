@@ -1,6 +1,6 @@
 # Genomic Selection <img src="man/figures/logo.png" width="120px" align="right"/>
 
-The GS is a r-package that has been created to run cross validation using BGLR - sommer - ASReml packages. This allows you run CV by command line or with a user interface in shiny.
+The GS is a r-package that has been created to run cross validation using BGLR - sommer packages. This allows you run CV by command line or with a user interface in shiny.
 
 ## Installation
 

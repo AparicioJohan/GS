@@ -6,7 +6,7 @@ Authors@R:
            family = "Aparicio",
            role = c("aut", "cre"),
            email = "j.aparicio@cgiar.org")
-Description: Genomic prediction methodes as impletented BGLR package and also in asreml and sommer are possible to fit in GS.
+Description: Genomic prediction methods as impletented BGLR and sommer packages are possible to fit in GS.
 License: GPL-2
 Encoding: UTF-8
 URL: https://github.com/AparicioJohan/GS
@@ -16,7 +16,7 @@ Imports:
     dplyr,
     data.table,
     ggplot2,
-    sommer,
+    sommer (>= 4.0.9),
     BGLR,
     readr,
     tidyr,
