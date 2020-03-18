@@ -3,40 +3,53 @@
 #'
 #' \code{crossGP} returns the cross validation usign differents methodologies as implemented in GBLR, ASReml and sommer package.
 #'
-#' @param geno The name of the file which the data are to be read from (Marker Matrix -1,0,1)
-#' @param samp A string
-#' @param phen A string
-#' @param prior A string vector c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
-#' @param niter A numeric
-#' @param testporc A numeric
-#' @param traits A string vector
+#' @param geno The name of the file which the genotypic-data are to be read from or a matrix with Marker information (-1,0,1)
+#' @param samp The name of the file which the genotypes are to be read from or a vector  with the samples
+#' @param phen The name of the file which the phenotypic-data are to be read from or a data.frame with phenotypic information
+#' @param prior A string vector with some of those models c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
+#' @param niter A numeric from 0 to 100
+#' @param testporc A numeric from 0 to 1
+#' @param traits A string vector with the traits names
 #'
 #' @return list with two elements
 #' @export
 #'
 #' @examples
 #'
-#'  ####  Not run  ####
-#'  # geno <- "imputed_rrBLUP.in"
-#'  # samp <- "imputed_rrBLUP_samples.txt"
-#'  # phen <- "Phenotypic_Analysis.csv"
+#' # library(sommer)
+#' # data(DT_cpdata)
 #'
-#'  # prior <- c("ASReml", "RKHS", "sommer")
+#' # geno <- GT_cpdata
+#' # samp <- rownames(GT_cpdata)
+#' # phen <- DT_cpdata
 #'
-#'  # out_table <- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)
-"crossGP" <- function(geno, samp, phen, prior, niter=50, testporc=0.3, traits=NULL){
+#' # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = names(phen)[5])
+#'
+"crossGP" <- function(geno, samp, phen, prior="sommer", niter=50, testporc=0.3, traits=NULL){
 
-  # Samples
-  samp = read.delim(samp, header = F)[,1]
+  if (length(samp)>1) {
+    samp <- samp
+  } else {
+    samp = read.delim(samp, header = F)[,1]
+  }
 
-  # Genotypic
-  G = read.table(geno, row.names = as.character(samp), header = F)
-  G <- G[ order(row.names(G)) , ]
+  if (inherits(geno, what = "matrix")) {
+    geno <- as.matrix(geno)
+    G <- geno
+  } else {
+    geno <- geno
+    G = read.table(geno, row.names = as.character(samp), header = F)
+    G <- G[ order(row.names(G)) , ]
+  }
 
-  # phenotypic
-  phen <- read.csv(phen) %>% data.frame()
-  genoname <<- names(phen)[1]
-  phen <- arrange(phen, get(genoname))
+  if (inherits(phen, what = "data.frame")) {
+    phen <- as.data.frame(phen)
+    genoname <<- names(phen)[1]
+  } else {
+    phen <- data.frame(read.csv(phen))
+    genoname <<- names(phen)[1]
+    phen <- arrange(phen, get(genoname))
+  }
 
   # traits
   if(is.null(traits)) traits <- names(phen)[names(phen)!=genoname]
@@ -47,7 +60,7 @@
     message("[]==============================================================[]")
     message("[]==================== Genomic Prediction  =====================[]")
     message("[]============= ASReml - BGLR - sommer package  ================[]")
-    message("[]======= Last update: 2020-03-10  Johan Aparicio ==============[]")
+    message("[]======= Last update: 2020-03-18  Johan Aparicio ==============[]")
     message("[]==============================================================[]\n")
   }
 
@@ -137,8 +150,8 @@
       if("ASReml"%in%prior){
 
         fm <-asreml::asreml(fixed=yNA~1,
-                    random=~vm(level,ahatinv),
-                    workspace=128e06,na.action=asreml::na.method(y="include"),data=phen2, trace=F)
+                            random=~vm(level,ahatinv),
+                            workspace=128e06,na.action=asreml::na.method(y="include"),data=phen2, trace=F)
 
         # hrk[pop] <- as.numeric(vpredict(fm , h2~V1/(V1+V2))[1])
 
@@ -167,8 +180,8 @@
 
 
         fm2 =BGLR::BGLR( y=yNA, ETA=ETA,
-                    nIter=10000, burnIn=1000, thin=5,
-                    verbose=FALSE)
+                         nIter=10000, burnIn=1000, thin=5,
+                         verbose=FALSE)
 
         # hrk2[pop] <- fm2$ETA[[1]]$varU/(fm2$ETA[[1]]$varU + fm2$varE)
 
@@ -189,9 +202,9 @@
         phen2$vSom <- yNA
 
         fm3 = sommer::mmer(vSom~1,
-                   random=~vs(level,Gu=AHAT_blend),
-                   rcov=~units,
-                   data=phen2,verbose=FALSE )
+                           random=~vs(level,Gu=AHAT_blend),
+                           rcov=~units,
+                           data=phen2,verbose=FALSE )
 
         # hrk3[pop] <- as.numeric(pin(fm3, h2 ~ (V1) / ( V1+V2) )[1])
 
@@ -214,8 +227,8 @@
         ETA = list(list(model="BRR",    X=GT))
 
         fm4 = BGLR::BGLR( y=yNA, ETA=ETA,
-                    nIter=10000, burnIn=1000, thin=5,
-                    verbose=FALSE)
+                          nIter=10000, burnIn=1000, thin=5,
+                          verbose=FALSE)
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm4$varE
@@ -234,8 +247,8 @@
         ETA = list(list(model="BayesA",   X=GT))
 
         fm5 = BGLR::BGLR( y=yNA, ETA=ETA,
-                    nIter=10000, burnIn=1000, thin=5,
-                    verbose=FALSE)
+                          nIter=10000, burnIn=1000, thin=5,
+                          verbose=FALSE)
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm5$varE
@@ -254,8 +267,8 @@
         ETA = list(list(model="BayesB",   X=GT))
 
         fm6 = BGLR::BGLR( y=yNA, ETA=ETA,
-                    nIter=10000, burnIn=1000, thin=5,
-                    verbose=FALSE)
+                          nIter=10000, burnIn=1000, thin=5,
+                          verbose=FALSE)
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm6$varE
@@ -274,8 +287,8 @@
         ETA = list(list(model="BayesC",   X=GT))
 
         fm7 = BGLR::BGLR( y=yNA, ETA=ETA,
-                    nIter=10000, burnIn=1000, thin=5,
-                    verbose=FALSE)
+                          nIter=10000, burnIn=1000, thin=5,
+                          verbose=FALSE)
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm7$varE
@@ -294,8 +307,8 @@
         ETA = list(list(model="BL",   X=GT))
 
         fm8 = BGLR::BGLR( y=yNA, ETA=ETA,
-                    nIter=10000, burnIn=1000, thin=5,
-                    verbose=FALSE)
+                          nIter=10000, burnIn=1000, thin=5,
+                          verbose=FALSE)
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm8$varE

@@ -25,11 +25,12 @@ GS::GS_shiny()
 The code below shows how you can run the cross validation.
 
 ``` r
-# geno <- "imputed_rrBLUP.in"
-# samp <- "imputed_rrBLUP_samples.txt"
-# phen <- "Phenotypic_Analysis.csv"
+# library(sommer)
+# data(DT_cpdata)
 
-# prior <- c("ASReml", "RKHS", "sommer")
+# geno <- GT_cpdata
+# samp <- rownames(GT_cpdata)
+# phen <- DT_cpdata
 
-# out_table <- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)
+# crossGP(geno, samp, phen, prior = "sommer", niter=2, testporc = 0.3, traits = names(phen)[5])
 ```

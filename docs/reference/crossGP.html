@@ -134,38 +134,46 @@
     <p><code>crossGP</code> returns the cross validation usign differents methodologies as implemented in GBLR, ASReml and sommer package.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>crossGP</span>(<span class='no'>geno</span>, <span class='no'>samp</span>, <span class='no'>phen</span>, <span class='no'>prior</span>, <span class='kw'>niter</span> <span class='kw'>=</span> <span class='fl'>50</span>, <span class='kw'>testporc</span> <span class='kw'>=</span> <span class='fl'>0.3</span>, <span class='kw'>traits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>crossGP</span>(
+  <span class='no'>geno</span>,
+  <span class='no'>samp</span>,
+  <span class='no'>phen</span>,
+  <span class='kw'>prior</span> <span class='kw'>=</span> <span class='st'>"sommer"</span>,
+  <span class='kw'>niter</span> <span class='kw'>=</span> <span class='fl'>50</span>,
+  <span class='kw'>testporc</span> <span class='kw'>=</span> <span class='fl'>0.3</span>,
+  <span class='kw'>traits</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>geno</th>
-      <td><p>A string</p></td>
+      <td><p>The name of the file which the genotypic-data are to be read from or a matrix with Marker information (-1,0,1)</p></td>
     </tr>
     <tr>
       <th>samp</th>
-      <td><p>A string</p></td>
+      <td><p>The name of the file which the genotypes are to be read from or a vector  with the samples</p></td>
     </tr>
     <tr>
       <th>phen</th>
-      <td><p>A string</p></td>
+      <td><p>The name of the file which the phenotypic-data are to be read from or a data.frame with phenotypic information</p></td>
     </tr>
     <tr>
       <th>prior</th>
-      <td><p>A string vector c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")</p></td>
+      <td><p>A string vector with some of those models c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")</p></td>
     </tr>
     <tr>
       <th>niter</th>
-      <td><p>A numeric</p></td>
+      <td><p>A numeric from 0 to 100</p></td>
     </tr>
     <tr>
       <th>testporc</th>
-      <td><p>A numeric</p></td>
+      <td><p>A numeric from 0 to 1</p></td>
     </tr>
     <tr>
       <th>traits</th>
-      <td><p>A string vector</p></td>
+      <td><p>A string vector with the traits names</p></td>
     </tr>
     </table>
 
@@ -175,14 +183,15 @@
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'>
- ####  Not run  ####
- # geno <- "imputed_rrBLUP.in"
- # samp <- "imputed_rrBLUP_samples.txt"
- # phen <- "Phenotypic_Analysis.csv"
+# library(sommer)
+# data(DT_cpdata)
 
- # prior <- c("ASReml", "RKHS", "sommer")
+# geno <- GT_cpdata
+# samp <- rownames(GT_cpdata)
+# phen <- DT_cpdata
 
- # out_table <- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)
+# crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = names(phen)[5])
+
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

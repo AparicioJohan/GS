@@ -4,22 +4,30 @@
 \alias{crossGP}
 \title{Cross validation}
 \usage{
-crossGP(geno, samp, phen, prior, niter = 50, testporc = 0.3, traits = NULL)
+crossGP(
+  geno,
+  samp,
+  phen,
+  prior = "sommer",
+  niter = 50,
+  testporc = 0.3,
+  traits = NULL
+)
 }
 \arguments{
-\item{geno}{A string}
+\item{geno}{The name of the file which the genotypic-data are to be read from or a matrix with Marker information (-1,0,1)}
 
-\item{samp}{A string}
+\item{samp}{The name of the file which the genotypes are to be read from or a vector  with the samples}
 
-\item{phen}{A string}
+\item{phen}{The name of the file which the phenotypic-data are to be read from or a data.frame with phenotypic information}
 
-\item{prior}{A string vector c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")}
+\item{prior}{A string vector with some of those models c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")}
 
-\item{niter}{A numeric}
+\item{niter}{A numeric from 0 to 100}
 
-\item{testporc}{A numeric}
+\item{testporc}{A numeric from 0 to 1}
 
-\item{traits}{A string vector}
+\item{traits}{A string vector with the traits names}
 }
 \value{
 list with two elements
@@ -29,12 +37,13 @@ list with two elements
 }
 \examples{
 
- ####  Not run  ####
- # geno <- "imputed_rrBLUP.in"
- # samp <- "imputed_rrBLUP_samples.txt"
- # phen <- "Phenotypic_Analysis.csv"
+# library(sommer)
+# data(DT_cpdata)
 
- # prior <- c("ASReml", "RKHS", "sommer")
+# geno <- GT_cpdata
+# samp <- rownames(GT_cpdata)
+# phen <- DT_cpdata
 
- # out_table <- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)
+# crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = names(phen)[5])
+
 }

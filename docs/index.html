@@ -106,13 +106,14 @@
 <h2 class="hasAnchor">
 <a href="#command-line" class="anchor"></a>Command line</h2>
 <p>The code below shows how you can run the cross validation.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># geno &lt;- "imputed_rrBLUP.in"</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co"># samp &lt;- "imputed_rrBLUP_samples.txt"</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co"># phen &lt;- "Phenotypic_Analysis.csv"</span></a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co"># prior &lt;- c("ASReml", "RKHS", "sommer")</span></a>
-<a class="sourceLine" id="cb4-6" title="6"></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co"># out_table &lt;- crossGP(geno, samp, phen, prior, niter = 2, testporc = 0.3)</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># library(sommer)</span></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co"># data(DT_cpdata)</span></a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co"># geno &lt;- GT_cpdata</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co"># samp &lt;- rownames(GT_cpdata)</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co"># phen &lt;- DT_cpdata</span></a>
+<a class="sourceLine" id="cb4-7" title="7"></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co"># crossGP(geno, samp, phen, prior = "sommer", niter=2, testporc = 0.3, traits = names(phen)[5])</span></a></code></pre></div>
 </div>
 </div>
   </div>
