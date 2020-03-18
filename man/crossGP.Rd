@@ -13,7 +13,7 @@ crossGP(geno, samp, phen, prior, niter = 50, testporc = 0.3, traits = NULL)
 
 \item{phen}{The name of the file which the phenotypic-data are to be read from or a data.frame with phenotypic information}
 
-\item{prior}{A string vector with some of those models c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")}
+\item{prior}{A string vector with some of those models c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")}
 
 \item{niter}{A numeric from 0 to 100}
 

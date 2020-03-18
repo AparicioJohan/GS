@@ -6,7 +6,7 @@
 #' @param geno The name of the file which the genotypic-data are to be read from or a matrix with Marker information (-1,0,1)
 #' @param samp The name of the file which the genotypes are to be read from or a vector  with the samples
 #' @param phen The name of the file which the phenotypic-data are to be read from or a data.frame with phenotypic information
-#' @param prior A string vector with some of those models c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
+#' @param prior A string vector with some of those models c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
 #' @param niter A numeric from 0 to 100
 #' @param testporc A numeric from 0 to 1
 #' @param traits A string vector with the traits names
