@@ -59,7 +59,7 @@
     phen <- arrange(phen, get(genoname))
   }
 
-  mt <- c("ASReml","RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
+  mt <- c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso") # "ASReml"
   if (sum(prior%in%mt)!=length(prior)) {
     stop("There are missings models")
   }
