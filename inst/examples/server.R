@@ -6,7 +6,9 @@ library(ggsci)
 library(ggpubr)
 library(shinyjs)
 library(shinytoastr)
-source("https://raw.githubusercontent.com/AparicioJohan/GPrediction/master/crossGP.R")
+library(GS)
+
+# source("https://raw.githubusercontent.com/AparicioJohan/GPrediction/master/crossGP.R")
 
 options(shiny.maxRequestSize = 70*1024^2)
 
