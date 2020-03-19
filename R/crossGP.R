@@ -1,11 +1,11 @@
 
 #' Cross validation
 #'
-#' \code{crossGP} returns the cross validation usign differents methodologies as implemented in GBLR, ASReml and sommer package.
+#' \code{crossGP} returns the cross validation usign differents methodologies as implemented in BGLR, ASReml and sommer package.
 #'
-#' @param geno The name of the file which the genotypic-data are to be read from or a matrix with Marker information (-1,0,1)
-#' @param samp The name of the file which the genotypes are to be read from or a vector  with the samples
-#' @param phen The name of the file which the phenotypic-data are to be read from or a data.frame with phenotypic information
+#' @param geno The name of the file which the genotypic-data are to be read from or a matrix in the r-environment. Data coded as (-1,0,1)
+#' @param samp The name of the file which the genotypes are to be read from or a vector  with the genotype names
+#' @param phen The name of the file which the phenotypic-data are to be read from or a data.frame in the r-environment.
 #' @param prior A string vector with some of those models c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
 #' @param niter A numeric from 0 to 100
 #' @param testporc A numeric from 0 to 1
@@ -121,8 +121,6 @@
     det(AHAT_blend)
     Ainv.blend<-solve(AHAT_blend)
     Ainv.blend[1:4,1:4]
-
-    # source("https://raw.githubusercontent.com/AparicioJohan/GPrediction/master/full2sparse.R")
 
     rownames(Ainv.blend) <- colnames(Ainv.blend) <- NULL
     AHAT.inv.sparse<-GS::full2sparse(Ainv.blend)  #lower diag sparse matrix (Ainv.bend)

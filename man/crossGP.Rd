@@ -7,11 +7,11 @@
 crossGP(geno, samp, phen, prior, niter = 50, testporc = 0.3, traits = NULL)
 }
 \arguments{
-\item{geno}{The name of the file which the genotypic-data are to be read from or a matrix with Marker information (-1,0,1)}
+\item{geno}{The name of the file which the genotypic-data are to be read from or a matrix in the r-environment. Data coded as (-1,0,1)}
 
-\item{samp}{The name of the file which the genotypes are to be read from or a vector  with the samples}
+\item{samp}{The name of the file which the genotypes are to be read from or a vector  with the genotype names}
 
-\item{phen}{The name of the file which the phenotypic-data are to be read from or a data.frame with phenotypic information}
+\item{phen}{The name of the file which the phenotypic-data are to be read from or a data.frame in the r-environment.}
 
 \item{prior}{A string vector with some of those models c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")}
 
@@ -25,7 +25,7 @@ crossGP(geno, samp, phen, prior, niter = 50, testporc = 0.3, traits = NULL)
 list with two elements
 }
 \description{
-\code{crossGP} returns the cross validation usign differents methodologies as implemented in GBLR, ASReml and sommer package.
+\code{crossGP} returns the cross validation usign differents methodologies as implemented in BGLR, ASReml and sommer package.
 }
 \examples{
 
