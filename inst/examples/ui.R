@@ -69,7 +69,7 @@ shinyUI(fluidPage(
                      awesomeCheckboxGroup(
                        inputId = "checkGroup",
                        label = h3("Models"),
-                       choices = c("RKHS","sommer","BRR","BayesA","BayesB","BayesC","BLasso"),
+                       choices = c("ASReml","RKHS","sommer","BRR","BayesA","BayesB","BayesC","BLasso"),
                        selected = c("RKHS"),
                        inline = TRUE,
                        status = "danger"
