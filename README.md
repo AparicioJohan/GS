@@ -7,10 +7,16 @@ The GS is a r-package that has been created to run cross validation using BGLR -
 ``` r
 devtools::install_github("AparicioJohan/GS")
 ```
+or ...
 
 ``` r
 source("https://install-github.me/AparicioJohan/GS")
 ```
+
+``` r
+library(GS)
+```
+
 
 ## Run the Shiny app
 

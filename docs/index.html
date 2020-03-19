@@ -98,33 +98,35 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"AparicioJohan/GS"</span>)</a></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/source.html">source</a></span>(<span class="st">"https://install-github.me/AparicioJohan/GS"</span>)</a></code></pre></div>
+<p>and then</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(GS)</a></code></pre></div>
 </div>
 <div id="run-the-shiny-app" class="section level2">
 <h2 class="hasAnchor">
 <a href="#run-the-shiny-app" class="anchor"></a>Run the Shiny app</h2>
 <p>There’s only one exported function in the package and it runs the Shiny app:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">GS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/GS/man/GS_shiny.html">GS_shiny</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">GS<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/GS/man/GS_shiny.html">GS_shiny</a></span>()</a></code></pre></div>
 </div>
 <div id="command-line" class="section level2">
 <h2 class="hasAnchor">
 <a href="#command-line" class="anchor"></a>Command line</h2>
 <p>The code below shows how you can run the cross validation.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># library(sommer)</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co"># data(DT_cpdata)</span></a>
-<a class="sourceLine" id="cb4-3" title="3"></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co"># geno &lt;- GT_cpdata</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co"># samp &lt;- rownames(GT_cpdata)</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co"># phen &lt;- DT_cpdata</span></a>
-<a class="sourceLine" id="cb4-7" title="7"></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co"># crossGP(geno, samp, phen, prior = "sommer", niter=2, testporc = 0.3, traits = names(phen)[5])</span></a>
-<a class="sourceLine" id="cb4-9" title="9"></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#---------------------</span></a>
-<a class="sourceLine" id="cb4-11" title="11"></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co"># geno &lt;- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP.in"</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co"># samp &lt;- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP_samples.txt"</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co"># phen &lt;- "D:/OneDrive - CGIAR/2020/Phenotypic_Analysis.csv"</span></a>
-<a class="sourceLine" id="cb4-15" title="15"></a>
-<a class="sourceLine" id="cb4-16" title="16"><span class="co"># crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># library(sommer)</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co"># data(DT_cpdata)</span></a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co"># geno &lt;- GT_cpdata</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co"># samp &lt;- rownames(GT_cpdata)</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co"># phen &lt;- DT_cpdata</span></a>
+<a class="sourceLine" id="cb5-7" title="7"></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co"># crossGP(geno, samp, phen, prior = "sommer", niter=2, testporc = 0.3, traits = names(phen)[5])</span></a>
+<a class="sourceLine" id="cb5-9" title="9"></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">#---------------------</span></a>
+<a class="sourceLine" id="cb5-11" title="11"></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co"># geno &lt;- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP.in"</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co"># samp &lt;- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP_samples.txt"</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co"># phen &lt;- "D:/OneDrive - CGIAR/2020/Phenotypic_Analysis.csv"</span></a>
+<a class="sourceLine" id="cb5-15" title="15"></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co"># crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")</span></a></code></pre></div>
 </div>
 </div>
   </div>

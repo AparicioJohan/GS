@@ -1,12 +1,12 @@
 
 
-#' user interface for running GS
+#' User interface for running GS
 #'
 #' @return shiny interface
 #' @export
 #'
 #' @examples
-#' # GS_shiny()
+#' # GS::GS_shiny()
 GS_shiny <- function()
 {
   if (!requireNamespace(package = "shiny"))
@@ -14,5 +14,5 @@ GS_shiny <- function()
   if (!requireNamespace(package = "plotly"))
     message("Package 'plotly' is required to run this function")
   shiny::shinyAppDir(system.file("examples/",
-                                  package = "GS", mustWork = TRUE))
+                                  package = "GS", mustWork = TRUE), options =  "launch.browser")
 }

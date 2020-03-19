@@ -13,7 +13,7 @@ crossGP(geno, samp, phen, prior, niter = 50, testporc = 0.3, traits = NULL)
 
 \item{phen}{The name of the file which the phenotypic-data are to be read from or a data.frame in the r-environment.}
 
-\item{prior}{A string vector with some of those models c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")}
+\item{prior}{A string vector with some of those models c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")}
 
 \item{niter}{A numeric from 0 to 100}
 
@@ -31,11 +31,11 @@ list with two elements
 
 # library(sommer)
 # data(DT_cpdata)
-
+#
 # geno <- GT_cpdata
 # samp <- rownames(GT_cpdata)
 # phen <- DT_cpdata
-
+#
 # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = names(phen)[5])
 
 #-----------------------
@@ -43,7 +43,7 @@ list with two elements
 # geno <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP.in"
 # samp <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP_samples.txt"
 # phen <- "D:/OneDrive - CGIAR/2020/Phenotypic_Analysis.csv"
-
+#
 # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")
 
 }

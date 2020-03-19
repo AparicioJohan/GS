@@ -2,7 +2,7 @@
 % Please edit documentation in R/GS_shiny.R
 \name{GS_shiny}
 \alias{GS_shiny}
-\title{user interface for running GS}
+\title{User interface for running GS}
 \usage{
 GS_shiny()
 }
@@ -10,8 +10,8 @@ GS_shiny()
 shiny interface
 }
 \description{
-user interface for running GS
+User interface for running GS
 }
 \examples{
-# GS_shiny()
+# GS::GS_shiny()
 }

@@ -6,7 +6,7 @@
 #' @param geno The name of the file which the genotypic-data are to be read from or a matrix in the r-environment. Data coded as (-1,0,1)
 #' @param samp The name of the file which the genotypes are to be read from or a vector  with the genotype names
 #' @param phen The name of the file which the phenotypic-data are to be read from or a data.frame in the r-environment.
-#' @param prior A string vector with some of those models c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
+#' @param prior A string vector with some of those models c("ASReml", "RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
 #' @param niter A numeric from 0 to 100
 #' @param testporc A numeric from 0 to 1
 #' @param traits A string vector with the traits names
@@ -18,11 +18,11 @@
 #'
 #' # library(sommer)
 #' # data(DT_cpdata)
-#'
+#' #
 #' # geno <- GT_cpdata
 #' # samp <- rownames(GT_cpdata)
 #' # phen <- DT_cpdata
-#'
+#' #
 #' # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = names(phen)[5])
 #'
 #' #-----------------------
@@ -30,7 +30,7 @@
 #' # geno <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP.in"
 #' # samp <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP_samples.txt"
 #' # phen <- "D:/OneDrive - CGIAR/2020/Phenotypic_Analysis.csv"
-#'
+#' #
 #' # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")
 #'
 "crossGP" <- function(geno, samp, phen, prior, niter=50, testporc=0.3, traits=NULL){
@@ -59,7 +59,7 @@
     phen <- arrange(phen, get(genoname))
   }
 
-  mt <- c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
+  mt <- c("ASReml","RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso")
   if (sum(prior%in%mt)!=length(prior)) {
     stop("There are missings models")
   }
