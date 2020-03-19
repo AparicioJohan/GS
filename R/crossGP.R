@@ -61,7 +61,7 @@
 
   mt <- c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso") # "ASReml"
   if (sum(prior%in%mt)!=length(prior)) {
-    stop("There are missings models")
+    stop("Check the prior names")
   }
 
   # traits
@@ -108,7 +108,7 @@
     LinesB <- as.character(rownames(G))                      # B
     GT <- G[rownames(G)%in%intersect(LinesA,LinesB),]   # Marker
 
-    phen2 <- phen %>% subset(.[,1]%in%rownames(GT)) %>% droplevels()
+    phen2 <- droplevels(subset(phen,phen[,1]%in%rownames(GT)))
     phen2$var <- phen2[,i]
     phen2$level <- phen2[,genoname]
 

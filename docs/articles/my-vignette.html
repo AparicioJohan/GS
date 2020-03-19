@@ -100,11 +100,91 @@
 
     
     
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(GS)</a></code></pre></div>
+<div id="loading-libraries" class="section level2">
+<h2 class="hasAnchor">
+<a href="#loading-libraries" class="anchor"></a>Loading libraries</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyverse)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(GS)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sommer)</a></code></pre></div>
+</div>
+<div id="genotypic-information" class="section level2">
+<h2 class="hasAnchor">
+<a href="#genotypic-information" class="anchor"></a>Genotypic information</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(DT_cpdata)</a>
+<a class="sourceLine" id="cb2-2" title="2"></a>
+<a class="sourceLine" id="cb2-3" title="3">geno &lt;-<span class="st"> </span>GT_cpdata</a>
+<a class="sourceLine" id="cb2-4" title="4">geno[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</a>
+<a class="sourceLine" id="cb2-5" title="5"><span class="co">#      scaffold_50439_2381 scaffold_39344_153 uneak_3436043</span></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co"># P003                   0                  0             0</span></a>
+<a class="sourceLine" id="cb2-7" title="7"><span class="co"># P004                   0                  0             0</span></a>
+<a class="sourceLine" id="cb2-8" title="8"><span class="co"># P005                   0                 -1             0</span></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co"># P006                  -1                 -1            -1</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="co"># P007                   0                  0             0</span></a></code></pre></div>
+</div>
+<div id="vector-with-genotype-names" class="section level2">
+<h2 class="hasAnchor">
+<a href="#vector-with-genotype-names" class="anchor"></a>Vector with genotype names</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">samp &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/colnames.html">rownames</a></span>(GT_cpdata)</a>
+<a class="sourceLine" id="cb3-2" title="2">samp[<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>]</a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="co"># [1] "P003" "P004" "P005" "P006" "P007"</span></a></code></pre></div>
+</div>
+<div id="phenotypic-information" class="section level2">
+<h2 class="hasAnchor">
+<a href="#phenotypic-information" class="anchor"></a>Phenotypic information</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">phen &lt;-<span class="st"> </span>DT_cpdata</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(phen,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#        id Row Col Year      color  Yield FruitAver Firmness Rowf Colf</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co"># P003 P003   3   1 2014 0.10075269 154.67     41.93  588.917    3    1</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co"># P004 P004   4   1 2014 0.13891940 186.77     58.79  640.031    4    1</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co"># P005 P005   5   1 2014 0.08681502  80.21     48.16  671.523    5    1</span></a></code></pre></div>
+</div>
+<div id="cross-validation" class="section level2">
+<h2 class="hasAnchor">
+<a href="#cross-validation" class="anchor"></a>Cross validation</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">tmp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crossGP.html">crossGP</a></span>(geno,samp,phen,<span class="dt">prior =</span> <span class="st">"sommer"</span>, <span class="dt">niter=</span><span class="dv">5</span>,<span class="dt">testporc =</span> <span class="fl">0.3</span>,<span class="dt">traits =</span> <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(phen)[<span class="dv">5</span><span class="op">:</span><span class="dv">6</span>])</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co"># []==============================================================[]</span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co"># []==================== Genomic Prediction  =====================[]</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co"># []============= ASReml - BGLR - sommer package  ================[]</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co"># []======= Last update: 2020-03-18  Johan Aparicio ==============[]</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co"># []==============================================================[]</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co"># color  == 362</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co"># Yield  == 362</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co"># </span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co"># prior trait   randomPop   hrk corr    finishedAt</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co"># sommer    color   Pop_1   0.6614  0.5491  2020-03-19 14:14:40</span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co"># sommer    color   Pop_2   0.6118  0.5918  2020-03-19 14:14:40</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co"># sommer    color   Pop_3   0.5964  0.6017  2020-03-19 14:14:40</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co"># sommer    color   Pop_4   0.6809  0.5977  2020-03-19 14:14:41</span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co"># sommer    color   Pop_5   0.5967  0.6326  2020-03-19 14:14:41</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co"># sommer    Yield   Pop_1   0.0997  0.2429  2020-03-19 14:14:42</span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co"># sommer    Yield   Pop_2   0.0728  0.2456  2020-03-19 14:14:42</span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co"># sommer    Yield   Pop_3   0.0944  0.2047  2020-03-19 14:14:42</span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co"># sommer    Yield   Pop_4   0.1 0.2363  2020-03-19 14:14:42</span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="co"># sommer    Yield   Pop_5   0.0622  0.2769  2020-03-19 14:14:42</span></a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="co"># </span></a>
+<a class="sourceLine" id="cb5-22" title="22"><span class="co"># []============================ End =============================[]</span></a></code></pre></div>
+</div>
+<div id="section" class="section level2">
+<h2></h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">ggplot</span>(tmp<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x=</span>trait,<span class="dt">y=</span>corr))<span class="op">+</span><span class="kw">geom_boxplot</span>()</a></code></pre></div>
+<p><img src="my-vignette_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li><a href="#loading-libraries">Loading libraries</a></li>
+      <li><a href="#genotypic-information">Genotypic information</a></li>
+      <li><a href="#vector-with-genotype-names">Vector with genotype names</a></li>
+      <li><a href="#phenotypic-information">Phenotypic information</a></li>
+      <li><a href="#cross-validation">Cross validation</a></li>
+      <li><a href="#section"></a></li>
+      </ul>
+</div>
       </div>
 
 </div>
