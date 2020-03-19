@@ -7,6 +7,7 @@ library(ggpubr)
 library(shinyjs)
 library(shinytoastr)
 library(GS)
+library(sommer)
 
 # source("https://raw.githubusercontent.com/AparicioJohan/GPrediction/master/crossGP.R")
 

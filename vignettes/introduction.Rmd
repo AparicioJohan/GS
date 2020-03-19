@@ -1,8 +1,8 @@
 ---
-title: "introduction"
+title: "Shiny"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{introduction}
+  %\VignetteIndexEntry{Shiny}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
-library(GS)
-```
 
 
+<img src="./figures/pic1.PNG" width="50%">
