@@ -33,11 +33,11 @@ The code below shows how you can run the cross validation.
 ``` r
 # library(sommer)
 # data(DT_cpdata)
-
+#
 # geno <- GT_cpdata
 # samp <- rownames(GT_cpdata)
 # phen <- DT_cpdata
-
+#
 # crossGP(geno, samp, phen, prior = "sommer", niter=2, testporc = 0.3, traits = names(phen)[5])
 
 #---------------------
@@ -45,7 +45,7 @@ The code below shows how you can run the cross validation.
 # geno <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP.in"
 # samp <- "D:/OneDrive - CGIAR/2020/imputed_rrBLUP_samples.txt"
 # phen <- "D:/OneDrive - CGIAR/2020/Phenotypic_Analysis.csv"
-
+#
 # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")
 
 ```
