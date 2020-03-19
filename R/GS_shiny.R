@@ -14,5 +14,5 @@ GS_shiny <- function()
   if (!requireNamespace(package = "plotly"))
     message("Package 'plotly' is required to run this function")
   shiny::shinyAppDir(system.file("examples/",
-                                  package = "GS", mustWork = TRUE), options =  "launch.browser")
+                                  package = "GS", mustWork = TRUE), options = list(launch.browser=T))
 }
