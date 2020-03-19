@@ -31,6 +31,5 @@ Imports:
 Suggests: 
     knitr,
     rmarkdown,
-    testthat,
-    asreml
+    testthat
 VignetteBuilder: knitr
