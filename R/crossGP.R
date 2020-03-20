@@ -46,6 +46,7 @@
   if (inherits(geno, what = "matrix")) {
     geno <- as.matrix(geno)
     G <- geno
+    rownames(G) <- samp
   } else {
     geno <- geno
     G = read.table(geno, row.names = as.character(samp), header = F)
@@ -112,7 +113,7 @@
 
     phen2 <- droplevels(subset(phen,phen[,1]%in%rownames(GT)))
     phen2$var <- phen2[,i]
-    phen2$level <- phen2[,genoname]
+    phen2$level <- as.factor(phen2[,genoname])
 
     #------ ainverse  ---------
 
@@ -215,14 +216,14 @@
         phen2$vSom <- yNA
 
         fm3 = sommer::mmer(vSom~1,
-                           random=~vs(level,Gu=AHAT_blend),
+                           random=~sommer::vs(level,Gu=AHAT_blend),
                            rcov=~units,
                            data=phen2,verbose=FALSE )
 
-        hrk3[pop] <- as.numeric(pin(fm3, h2 ~ (V1) / ( V1+V2) )[1])
+        # hrk3[pop] <- as.numeric(sommer::pin(fm3, h2 ~ (V1) / ( V1+V2) )[1])
 
-        # Vary<-var(yNA,na.rm=TRUE)
-        # hrk3[pop] <- round(1-summary(fm3)$varcomp[2,1]/Vary, 4)
+        Vary<-var(yNA,na.rm=TRUE)
+        hrk3[pop] <- round(1-summary(fm3)$varcomp[2,1]/Vary, 4)
 
         fm3$U$`u:level`$vSom <- as.data.frame(fm3$U$`u:level`$vSom)
         rownames(fm3$U$`u:level`$vSom) <- gsub("level","",rownames(fm3$U$`u:level`$vSom))

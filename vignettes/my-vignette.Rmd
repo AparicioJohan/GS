@@ -47,8 +47,8 @@ head(phen,3)
 
 
 ## Cross validation
-```{r, warning=F}
-tmp <- crossGP(geno,samp,phen,prior = "sommer", niter=10,testporc = 0.3,traits = names(phen)[c(5,7)])
+```{r, warning=F, message=F}
+tmp <- crossGP(geno,samp,phen,prior = "sommer", niter=20,testporc = 0.3,traits = names(phen)[c(5,7)])
 ```
 
 ## plot
@@ -57,7 +57,7 @@ tmp <- crossGP(geno,samp,phen,prior = "sommer", niter=10,testporc = 0.3,traits =
 ggplot(tmp$data, aes(x=trait,y=corr, fill=trait))+geom_boxplot()+theme_bw()
 ```
 
-# Genomic Heritability
+## Variance explained
 
 ```{r}
 tmp2 <- crossGP(geno,samp,phen,prior = "sommer", niter=5,testporc = 0,traits = names(phen)[c(5,7)])
