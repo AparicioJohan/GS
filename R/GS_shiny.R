@@ -7,6 +7,8 @@
 #'
 #' @examples
 #' # GS::GS_shiny()
+#' @author Johan Aparicio, \email{j.aparicio@cgiar.org}
+#'
 GS_shiny <- function()
 {
   if (!requireNamespace(package = "shiny"))

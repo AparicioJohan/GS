@@ -17,4 +17,8 @@ full2sparse
 }
 \examples{
  # full2sparse(mat)
+
+}
+\author{
+Johan Aparicio, \email{j.aparicio@cgiar.org}
 }

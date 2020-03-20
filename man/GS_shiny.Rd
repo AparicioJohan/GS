@@ -15,3 +15,6 @@ User interface for running GS
 \examples{
 # GS::GS_shiny()
 }
+\author{
+Johan Aparicio, \email{j.aparicio@cgiar.org}
+}

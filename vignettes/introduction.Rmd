@@ -1,5 +1,6 @@
 ---
 title: "Shiny"
+author: "Aparicio Johan"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Shiny}
@@ -10,10 +11,15 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#"
 )
 ```
 
+## User interface
+
+```{r}
+# GS::GS_shiny()
+```
 
 
-<img src="https://raw.githubusercontent.com/AparicioJohan/GS/master/docs/articles/figures/pic1.PNG" width="70%">
+<img src="https://raw.githubusercontent.com/AparicioJohan/GS/master/docs/articles/figures/pic1.PNG" width="100%">

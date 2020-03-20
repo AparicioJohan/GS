@@ -9,6 +9,9 @@
 #'
 #' @examples
 #'  # full2sparse(mat)
+#'
+#' @author Johan Aparicio, \email{j.aparicio@cgiar.org}
+#'
 "full2sparse" <- function(mat) {
   if (is.null(colnames(mat))) {
     colnames(mat) <- 1:ncol(mat)

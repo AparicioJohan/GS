@@ -219,10 +219,10 @@
                            rcov=~units,
                            data=phen2,verbose=FALSE )
 
-        # hrk3[pop] <- as.numeric(pin(fm3, h2 ~ (V1) / ( V1+V2) )[1])
+        hrk3[pop] <- as.numeric(pin(fm3, h2 ~ (V1) / ( V1+V2) )[1])
 
-        Vary<-var(yNA,na.rm=TRUE)
-        hrk3[pop] <- round(1-summary(fm3)$varcomp[2,1]/Vary, 4)
+        # Vary<-var(yNA,na.rm=TRUE)
+        # hrk3[pop] <- round(1-summary(fm3)$varcomp[2,1]/Vary, 4)
 
         fm3$U$`u:level`$vSom <- as.data.frame(fm3$U$`u:level`$vSom)
         rownames(fm3$U$`u:level`$vSom) <- gsub("level","",rownames(fm3$U$`u:level`$vSom))
