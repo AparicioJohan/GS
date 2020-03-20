@@ -16,6 +16,4 @@ knitr::opts_chunk$set(
 
 
 
-<img src="./figures/pic1.PNG" width="70%">
-
-<img src="./figures/f7_gadget.png" class="img-shadow" width="405" height="629">
+<img src="figures/pic1.PNG" width="70%">

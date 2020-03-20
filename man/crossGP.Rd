@@ -47,3 +47,6 @@ list with two elements
 # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")
 
 }
+\author{
+Johan Aparicio, \email{j.aparicio@cgiar.org}
+}

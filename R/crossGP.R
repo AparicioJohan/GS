@@ -33,6 +33,8 @@
 #' #
 #' # crossGP(geno,samp,phen,prior = "sommer", niter=2,testporc = 0.3,traits = "Pal13C_drt")
 #'
+#' @author Johan Aparicio, \email{j.aparicio@cgiar.org}
+#'
 "crossGP" <- function(geno, samp, phen, prior, niter=50, testporc=0.3, traits=NULL){
 
   if (length(samp)>1) {
