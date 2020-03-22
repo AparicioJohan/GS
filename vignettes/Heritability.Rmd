@@ -1,0 +1,57 @@
+---
+title: "Heritability"
+author: "Johan Aparicio"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Heritability}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#"
+)
+```
+
+## Marker based heritability calculation
+
+
+```{r, warning=F, message=F}
+ library(tidyverse)
+ library(GS)
+ library(sommer)
+ data(DT_cpdata)
+
+ geno <- GT_cpdata
+ samp <- rownames(GT_cpdata)
+ phen <- DT_cpdata
+```
+
+
+```{r, fig.width=8}
+ tmp <- herMarker(geno, samp, phen, method = c("RKHS","sommer"), traits=c("color","Yield"))
+```
+
+
+```{r}
+ names(tmp$data)
+```
+
+
+```{r}
+ tmp$data[,-c(4,5)] %>% spread(method,h)
+```
+
+
+```{r}
+ tmp$data %>%
+   ggplot(aes(x=method, y=h,fill=method, label=round(h,2)))+
+   geom_bar(stat = "identity", position = "dodge" )+
+   theme_bw()+
+   theme(axis.text.x = element_text(hjust = 1,angle = 75))+
+   geom_text(aes(method), size=3,nudge_y = 0.08)+
+   facet_wrap(~trait,ncol = 2,scales = "free_x")
+```
+

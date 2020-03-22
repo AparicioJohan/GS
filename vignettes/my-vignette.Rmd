@@ -1,9 +1,9 @@
 ---
-title: "How to start"
+title: "Cross Validation"
 author: "Aparicio Johan"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{How to start}
+  %\VignetteIndexEntry{Cross Validation}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -51,7 +51,7 @@ head(phen,3)
 tmp <- crossGP(geno,samp,phen,prior = "sommer", niter=20,testporc = 0.3,traits = names(phen)[c(5,7)])
 ```
 
-## plot
+## Prediction Ability
 
 ```{r}
 ggplot(tmp$data, aes(x=trait,y=corr, fill=trait))+geom_boxplot()+theme_bw()
@@ -69,7 +69,7 @@ tmp2 <- crossGP(geno,samp,phen,prior = "sommer", niter=5,testporc = 0,traits = n
 
 ```{r}
 tmp <- tmp$data[,c("trait","corr")]
-tmp2 <- tmp2$data[,c("trait","hrk")]
+tmp2 <- tmp2$data[,c("trait","r.sqr")]
 merG <- merge(tmp,tmp2, by="trait", all=T)
 ```
 
@@ -79,12 +79,12 @@ merG <- merge(tmp,tmp2, by="trait", all=T)
 p <- ggplot(merG, aes(x=trait,y=corr, fill=trait))+geom_boxplot()+theme_bw()+xlab(" ")+
   geom_segment(data=merG,aes(x = as.numeric(as.factor(trait)) - 0.48, 
                                  xend = as.numeric(as.factor(trait)) + 0.48, 
-                                 yend = hrk , 
-                                 y = hrk ),size=2.5, color="white")+
+                                 yend = r.sqr , 
+                                 y = r.sqr ),size=2.5, color="white")+
   geom_segment(data=merG,aes(x = as.numeric(as.factor(trait)) - 0.45, 
                                  xend = as.numeric(as.factor(trait)) + 0.45, 
-                                 yend = hrk , 
-                                 y = hrk , 
+                                 yend = r.sqr , 
+                                 y = r.sqr , 
                                  colour = trait),size=1)+
   ylab("Prediction ability")+
   theme(axis.text.x=element_text(angle=80,vjust=0.5))

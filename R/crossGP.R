@@ -15,7 +15,6 @@
 #' @export
 #'
 #' @examples
-#'
 #' # library(sommer)
 #' # data(DT_cpdata)
 #' #
@@ -91,10 +90,10 @@
 
   # Dataframe with results --------------------------------------------------
   out_table = data.frame(prior = as.character(), trait = as.character(),
-                         randomPop = as.character(), hrk=as.numeric(),
+                         randomPop = as.character(), r.sqr=as.numeric(),
                          corr = as.numeric(), finishedAt = as.character())
 
-  message("\nprior", "\ttrait", "\trandomPop", "\thrk", "\tcorr" , "\tfinishedAt" )
+  message("\nprior", "\ttrait", "\trandomPop", "\tr.sqr", "\tcorr" , "\tfinishedAt" )
   #--------------------------------------------------------------------------
 
   modMar <- c("BRR","BayesA","BayesB","BayesC","BLasso")
@@ -146,7 +145,7 @@
 
 
     # asr / rkhs / som / BRR / bayA / bayB / bayC / BL
-    hrk <- hrk2 <- hrk3 <- hrk3 <- hrk4 <- hrk5 <- hrk6 <- hrk7 <- hrk8 <- c()
+    r.sqr <- r.sqr2 <- r.sqr3 <- r.sqr3 <- r.sqr4 <- r.sqr5 <- r.sqr6 <- r.sqr7 <- r.sqr8 <- c()
     corrk <- corrk2 <- corrk3 <- corrk4 <- corrk5 <- corrk6 <- corrk7 <- corrk8 <- c()
     fm <- fm2 <- fm3 <- fm4 <- fm5 <- fm6 <- fm7 <- fm8 <- list()
 
@@ -167,16 +166,16 @@
       #                       random=~vm(level,ahatinv),
       #                       workspace=128e06,na.action=asreml::na.method(y="include"),data=phen2, trace=F)
       #
-      #   # hrk[pop] <- as.numeric(vpredict(fm , h2~V1/(V1+V2))[1])
+      #   # r.sqr[pop] <- as.numeric(vpredict(fm , h2~V1/(V1+V2))[1])
       #
       #   Vary<-var(yNA,na.rm=TRUE)
-      #   hrk[pop] <- round(1-summary(fm)$varcomp[2,1]/Vary,4)
+      #   r.sqr[pop] <- round(1-summary(fm)$varcomp[2,1]/Vary,4)
       #
       #   predGBLUPcv<-predict(fm,classify="level",sed=T)$pvals
       #   predGBLUPcv<-predGBLUPcv[,2]
       #
       #   corrk[pop] <- cor(y[tst],predGBLUPcv[tst]) %>% round(.,4)
-      #   message(prior[prior=="ASReml"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk[pop], "\t",corrk[pop], "\t" , paste0(Sys.time()))
+      #   message(prior[prior=="ASReml"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr[pop], "\t",corrk[pop], "\t" , paste0(Sys.time()))
       #
       # }
 
@@ -197,15 +196,15 @@
                          nIter=10000, burnIn=1000, thin=5,
                          verbose=FALSE)
 
-        # hrk2[pop] <- fm2$ETA[[1]]$varU/(fm2$ETA[[1]]$varU + fm2$varE)
+        # r.sqr2[pop] <- fm2$ETA[[1]]$varU/(fm2$ETA[[1]]$varU + fm2$varE)
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm2$varE
-        hrk2[pop]<-round(1-VarE/Vary, 4)
+        r.sqr2[pop]<-round(1-VarE/Vary, 4)
 
 
         corrk2[pop] <- cor(y[tst],fm2$yHat[tst]) %>% round(.,4)
-        message(prior[prior=="RKHS"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk2[pop], "\t",corrk2[pop], "\t" , paste0(Sys.time()))
+        message(prior[prior=="RKHS"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr2[pop], "\t",corrk2[pop], "\t" , paste0(Sys.time()))
 
       }
 
@@ -220,17 +219,17 @@
                            rcov=~units,
                            data=phen2,verbose=FALSE )
 
-        # hrk3[pop] <- as.numeric(sommer::pin(fm3, h2 ~ (V1) / ( V1+V2) )[1])
+        # r.sqr3[pop] <- as.numeric(sommer::pin(fm3, h2 ~ (V1) / ( V1+V2) )[1])
 
         Vary<-var(yNA,na.rm=TRUE)
-        hrk3[pop] <- round(1-summary(fm3)$varcomp[2,1]/Vary, 4)
+        r.sqr3[pop] <- round(1-summary(fm3)$varcomp[2,1]/Vary, 4)
 
         fm3$U$`u:level`$vSom <- as.data.frame(fm3$U$`u:level`$vSom)
         rownames(fm3$U$`u:level`$vSom) <- gsub("level","",rownames(fm3$U$`u:level`$vSom))
 
         corrk3[pop] <- cor(fm3$U$`u:level`$vSom[tst,],y[tst], use="complete") %>% round(.,4)
 
-        message(prior[prior=="sommer"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk3[pop], "\t",corrk3[pop], "\t" , paste0(Sys.time()))
+        message(prior[prior=="sommer"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr3[pop], "\t",corrk3[pop], "\t" , paste0(Sys.time()))
 
       }
 
@@ -246,11 +245,11 @@
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm4$varE
-        hrk4[pop]<-round(1-VarE/Vary, 4)
+        r.sqr4[pop]<-round(1-VarE/Vary, 4)
 
 
         corrk4[pop] <- cor(y[tst],fm4$yHat[tst]) %>% round(.,4)
-        message(prior[prior=="BRR"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk4[pop], "\t",corrk4[pop], "\t" , paste0(Sys.time()))
+        message(prior[prior=="BRR"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr4[pop], "\t",corrk4[pop], "\t" , paste0(Sys.time()))
 
       }
 
@@ -266,11 +265,11 @@
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm5$varE
-        hrk5[pop]<-round(1-VarE/Vary, 4)
+        r.sqr5[pop]<-round(1-VarE/Vary, 4)
 
 
         corrk5[pop] <- cor(y[tst],fm5$yHat[tst]) %>% round(.,4)
-        message(prior[prior=="BayesA"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk5[pop], "\t",corrk5[pop], "\t" , paste0(Sys.time()))
+        message(prior[prior=="BayesA"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr5[pop], "\t",corrk5[pop], "\t" , paste0(Sys.time()))
 
       }
 
@@ -286,11 +285,11 @@
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm6$varE
-        hrk6[pop]<-round(1-VarE/Vary, 4)
+        r.sqr6[pop]<-round(1-VarE/Vary, 4)
 
 
         corrk6[pop] <- cor(y[tst],fm6$yHat[tst]) %>% round(.,4)
-        message(prior[prior=="BayesB"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk6[pop], "\t",corrk6[pop], "\t" , paste0(Sys.time()))
+        message(prior[prior=="BayesB"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr6[pop], "\t",corrk6[pop], "\t" , paste0(Sys.time()))
 
       }
 
@@ -306,11 +305,11 @@
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm7$varE
-        hrk7[pop]<-round(1-VarE/Vary, 4)
+        r.sqr7[pop]<-round(1-VarE/Vary, 4)
 
 
         corrk7[pop] <- cor(y[tst],fm7$yHat[tst]) %>% round(.,4)
-        message(prior[prior=="BayesC"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk7[pop], "\t",corrk7[pop], "\t" , paste0(Sys.time()))
+        message(prior[prior=="BayesC"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr7[pop], "\t",corrk7[pop], "\t" , paste0(Sys.time()))
 
       }
 
@@ -326,19 +325,19 @@
 
         Vary<-var(yNA,na.rm=TRUE)
         VarE<-fm8$varE
-        hrk8[pop]<-round(1-VarE/Vary, 4)
+        r.sqr8[pop]<-round(1-VarE/Vary, 4)
 
 
         corrk8[pop] <- cor(y[tst],fm8$yHat[tst]) %>% round(.,4)
-        message(prior[prior=="BLasso"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,hrk8[pop], "\t",corrk8[pop], "\t" , paste0(Sys.time()))
+        message(prior[prior=="BLasso"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr8[pop], "\t",corrk8[pop], "\t" , paste0(Sys.time()))
 
       }
 
       # final results ---------
 
-      hf <- c(hrk[pop],hrk2[pop],hrk3[pop],hrk4[pop],hrk5[pop],hrk6[pop],hrk7[pop],hrk8[pop])
+      hf <- c(r.sqr[pop],r.sqr2[pop],r.sqr3[pop],r.sqr4[pop],r.sqr5[pop],r.sqr6[pop],r.sqr7[pop],r.sqr8[pop])
       corf <- c(corrk[pop],corrk2[pop],corrk3[pop],corrk4[pop],corrk5[pop],corrk6[pop],corrk7[pop],corrk8[pop])
-      tmp = data.frame(prior = prior, trait = i, randomPop = paste0("Pop",pop), hrk = hf,  corr=corf , finishedAt = paste0(Sys.time()))
+      tmp = data.frame(prior = prior, trait = i, randomPop = paste0("Pop",pop), r.sqr = hf,  corr=corf , finishedAt = paste0(Sys.time()))
       out_table <- rbind(out_table,tmp)
 
     }

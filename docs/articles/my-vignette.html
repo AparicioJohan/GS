@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>How to start • GS</title>
+<title>Cross Validation • GS</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
@@ -16,7 +16,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="How to start">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Cross Validation">
 <meta property="og:description" content="">
 <meta property="og:image" content="/logo.png">
 <meta name="twitter:card" content="summary">
@@ -61,10 +61,13 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
+      <a href="../articles/Heritability.html">Heritability</a>
+    </li>
+    <li>
       <a href="../articles/introduction.html">Shiny</a>
     </li>
     <li>
-      <a href="../articles/my-vignette.html">How to start</a>
+      <a href="../articles/my-vignette.html">Cross Validation</a>
     </li>
   </ul>
 </li>
@@ -89,7 +92,7 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>How to start</h1>
+      <h1>Cross Validation</h1>
                         <h4 class="author">Aparicio Johan</h4>
             
       
@@ -143,9 +146,9 @@
 <a href="#cross-validation" class="anchor"></a>Cross validation</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">tmp &lt;-<span class="st"> </span><span class="kw"><a href="../reference/crossGP.html">crossGP</a></span>(geno,samp,phen,<span class="dt">prior =</span> <span class="st">"sommer"</span>, <span class="dt">niter=</span><span class="dv">20</span>,<span class="dt">testporc =</span> <span class="fl">0.3</span>,<span class="dt">traits =</span> <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(phen)[<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">5</span>,<span class="dv">7</span>)])</a></code></pre></div>
 </div>
-<div id="plot" class="section level2">
+<div id="prediction-ability" class="section level2">
 <h2 class="hasAnchor">
-<a href="#plot" class="anchor"></a>plot</h2>
+<a href="#prediction-ability" class="anchor"></a>Prediction Ability</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw">ggplot</span>(tmp<span class="op">$</span>data, <span class="kw">aes</span>(<span class="dt">x=</span>trait,<span class="dt">y=</span>corr, <span class="dt">fill=</span>trait))<span class="op">+</span><span class="kw">geom_boxplot</span>()<span class="op">+</span><span class="kw">theme_bw</span>()</a></code></pre></div>
 <p><img src="my-vignette_files/figure-html/unnamed-chunk-6-1.png" width="700"></p>
 </div>
@@ -161,9 +164,9 @@
 <a class="sourceLine" id="cb7-7" title="7"><span class="co"># color  == 362</span></a>
 <a class="sourceLine" id="cb7-8" title="8"><span class="co"># FruitAver  == 362</span></a>
 <a class="sourceLine" id="cb7-9" title="9"><span class="co"># </span></a>
-<a class="sourceLine" id="cb7-10" title="10"><span class="co"># prior trait   randomPop   hrk corr    finishedAt</span></a>
-<a class="sourceLine" id="cb7-11" title="11"><span class="co"># sommer    color   Pop_1   0.611   0.8777  2020-03-20 15:43:05</span></a>
-<a class="sourceLine" id="cb7-12" title="12"><span class="co"># sommer    FruitAver   Pop_1   0.1719  0.6235  2020-03-20 15:43:06</span></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="co"># prior trait   randomPop   r.sqr   corr    finishedAt</span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co"># sommer    color   Pop_1   0.611   0.8777  2020-03-22 17:42:56</span></a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="co"># sommer    FruitAver   Pop_1   0.1719  0.6235  2020-03-22 17:42:57</span></a>
 <a class="sourceLine" id="cb7-13" title="13"><span class="co"># </span></a>
 <a class="sourceLine" id="cb7-14" title="14"><span class="co"># []============================ End =============================[]</span></a></code></pre></div>
 </div>
@@ -171,17 +174,17 @@
 <h2 class="hasAnchor">
 <a href="#final-plot" class="anchor"></a>Final plot</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">tmp &lt;-<span class="st"> </span>tmp<span class="op">$</span>data[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"trait"</span>,<span class="st">"corr"</span>)]</a>
-<a class="sourceLine" id="cb8-2" title="2">tmp2 &lt;-<span class="st"> </span>tmp2<span class="op">$</span>data[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"trait"</span>,<span class="st">"hrk"</span>)]</a>
+<a class="sourceLine" id="cb8-2" title="2">tmp2 &lt;-<span class="st"> </span>tmp2<span class="op">$</span>data[,<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"trait"</span>,<span class="st">"r.sqr"</span>)]</a>
 <a class="sourceLine" id="cb8-3" title="3">merG &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/merge.html">merge</a></span>(tmp,tmp2, <span class="dt">by=</span><span class="st">"trait"</span>, <span class="dt">all=</span>T)</a></code></pre></div>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(merG, <span class="kw">aes</span>(<span class="dt">x=</span>trait,<span class="dt">y=</span>corr, <span class="dt">fill=</span>trait))<span class="op">+</span><span class="kw">geom_boxplot</span>()<span class="op">+</span><span class="kw">theme_bw</span>()<span class="op">+</span><span class="kw">xlab</span>(<span class="st">" "</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data=</span>merG,<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(trait)) <span class="op">-</span><span class="st"> </span><span class="fl">0.48</span>, </a>
 <a class="sourceLine" id="cb9-3" title="3">                                 <span class="dt">xend =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(trait)) <span class="op">+</span><span class="st"> </span><span class="fl">0.48</span>, </a>
-<a class="sourceLine" id="cb9-4" title="4">                                 <span class="dt">yend =</span> hrk , </a>
-<a class="sourceLine" id="cb9-5" title="5">                                 <span class="dt">y =</span> hrk ),<span class="dt">size=</span><span class="fl">2.5</span>, <span class="dt">color=</span><span class="st">"white"</span>)<span class="op">+</span></a>
+<a class="sourceLine" id="cb9-4" title="4">                                 <span class="dt">yend =</span> r.sqr , </a>
+<a class="sourceLine" id="cb9-5" title="5">                                 <span class="dt">y =</span> r.sqr ),<span class="dt">size=</span><span class="fl">2.5</span>, <span class="dt">color=</span><span class="st">"white"</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb9-6" title="6"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="dt">data=</span>merG,<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(trait)) <span class="op">-</span><span class="st"> </span><span class="fl">0.45</span>, </a>
 <a class="sourceLine" id="cb9-7" title="7">                                 <span class="dt">xend =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">as.numeric</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/factor.html">as.factor</a></span>(trait)) <span class="op">+</span><span class="st"> </span><span class="fl">0.45</span>, </a>
-<a class="sourceLine" id="cb9-8" title="8">                                 <span class="dt">yend =</span> hrk , </a>
-<a class="sourceLine" id="cb9-9" title="9">                                 <span class="dt">y =</span> hrk , </a>
+<a class="sourceLine" id="cb9-8" title="8">                                 <span class="dt">yend =</span> r.sqr , </a>
+<a class="sourceLine" id="cb9-9" title="9">                                 <span class="dt">y =</span> r.sqr , </a>
 <a class="sourceLine" id="cb9-10" title="10">                                 <span class="dt">colour =</span> trait),<span class="dt">size=</span><span class="dv">1</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb9-11" title="11"><span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Prediction ability"</span>)<span class="op">+</span></a>
 <a class="sourceLine" id="cb9-12" title="12"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x=</span><span class="kw">element_text</span>(<span class="dt">angle=</span><span class="dv">80</span>,<span class="dt">vjust=</span><span class="fl">0.5</span>))</a>
@@ -201,7 +204,7 @@
       <li><a href="#vector-with-genotype-names">Vector with genotype names</a></li>
       <li><a href="#phenotypic-information">Phenotypic information</a></li>
       <li><a href="#cross-validation">Cross validation</a></li>
-      <li><a href="#plot">plot</a></li>
+      <li><a href="#prediction-ability">Prediction Ability</a></li>
       <li><a href="#variance-explained">Variance explained</a></li>
       <li><a href="#final-plot">Final plot</a></li>
       </ul>

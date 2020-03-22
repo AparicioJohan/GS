@@ -28,7 +28,6 @@ list with two elements
 \code{crossGP} returns the cross validation usign differents methodologies as implemented in BGLR, ASReml and sommer package.
 }
 \examples{
-
 # library(sommer)
 # data(DT_cpdata)
 #

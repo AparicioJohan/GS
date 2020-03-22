@@ -3,3 +3,4 @@
 export(GS_shiny)
 export(crossGP)
 export(full2sparse)
+export(herMarker)
