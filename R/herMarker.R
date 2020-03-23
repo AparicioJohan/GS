@@ -68,18 +68,18 @@
     stop("Check the method names")
   }
 
+  phen <- GS::checkPhen(phen)
+
   # traits
   if(is.null(traits)) traits <- names(phen)[names(phen)!=genoname]
 
-  if (sum(traits%in%names(phen))!=length(traits)) {
-    stop("There are missings traits")
-  } else {
-    message("[]==============================================================[]")
-    message("[]======== Marker based heritability calculation ===============[]")
-    message("[]=================  BGLR - sommer package =====================[]")
-    message("[]======= Last update: 2020-03-22  Johan Aparicio ==============[]")
-    message("[]==============================================================[]\n")
-  }
+  traits <- intersect(traits, names(phen)[names(phen)!=genoname])
+
+  message("[]==============================================================[]")
+  message("[]======== Marker based heritability calculation ===============[]")
+  message("[]=================  BGLR - sommer package =====================[]")
+  message("[]======= Last update: 2020-03-22  Johan Aparicio ==============[]")
+  message("[]==============================================================[]\n")
 
   Gen <- list()
   for (i in traits) {
