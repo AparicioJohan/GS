@@ -124,20 +124,20 @@
 <a class="sourceLine" id="cb2-8" title="8"><span class="co"># Yield  == 362</span></a>
 <a class="sourceLine" id="cb2-9" title="9"><span class="co"># </span></a>
 <a class="sourceLine" id="cb2-10" title="10"><span class="co"># trait method  h   corr    finishedAt</span></a>
-<a class="sourceLine" id="cb2-11" title="11"><span class="co"># color RKHS    0.83    0.94    2020-03-22 17:42:30</span></a>
-<a class="sourceLine" id="cb2-12" title="12"><span class="co"># color s_narrow    0.648   0.87    2020-03-22 17:42:31</span></a>
-<a class="sourceLine" id="cb2-13" title="13"><span class="co"># color s_broad 0.732   0.861   2020-03-22 17:42:31</span></a>
-<a class="sourceLine" id="cb2-14" title="14"><span class="co"># Yield RKHS    0.414   0.716   2020-03-22 17:42:37</span></a>
-<a class="sourceLine" id="cb2-15" title="15"><span class="co"># Yield s_narrow    0.1 0.547   2020-03-22 17:42:38</span></a>
-<a class="sourceLine" id="cb2-16" title="16"><span class="co"># Yield s_broad 0.145   0.604   2020-03-22 17:42:38</span></a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co"># color RKHS    0.829   0.94    2020-03-23 16:28:33</span></a>
+<a class="sourceLine" id="cb2-12" title="12"><span class="co"># color s_narrow    0.648   0.87    2020-03-23 16:28:34</span></a>
+<a class="sourceLine" id="cb2-13" title="13"><span class="co"># color s_broad 0.732   0.861   2020-03-23 16:28:34</span></a>
+<a class="sourceLine" id="cb2-14" title="14"><span class="co"># Yield RKHS    0.39    0.701   2020-03-23 16:28:41</span></a>
+<a class="sourceLine" id="cb2-15" title="15"><span class="co"># Yield s_narrow    0.1 0.547   2020-03-23 16:28:42</span></a>
+<a class="sourceLine" id="cb2-16" title="16"><span class="co"># Yield s_broad 0.145   0.604   2020-03-23 16:28:42</span></a>
 <a class="sourceLine" id="cb2-17" title="17"><span class="co"># </span></a>
 <a class="sourceLine" id="cb2-18" title="18"><span class="co"># []============================ End =============================[]</span></a></code></pre></div>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"> <span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(tmp<span class="op">$</span>data)</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="co"># [1] "trait"      "method"     "h"          "corr"       "finishedAt"</span></a></code></pre></div>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"> tmp<span class="op">$</span>data[,<span class="op">-</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">4</span>,<span class="dv">5</span>)] <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">spread</span>(method,h)</a>
 <a class="sourceLine" id="cb4-2" title="2"><span class="co">#   trait  RKHS s_broad s_narrow</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co"># 1 color 0.830   0.732    0.648</span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co"># 2 Yield 0.414   0.145    0.100</span></a></code></pre></div>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co"># 1 color 0.829   0.732    0.648</span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co"># 2 Yield 0.390   0.145    0.100</span></a></code></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"> tmp<span class="op">$</span>data <span class="op">%&gt;%</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="st">   </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span>method, <span class="dt">y=</span>h,<span class="dt">fill=</span>method, <span class="dt">label=</span><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(h,<span class="dv">2</span>)))<span class="op">+</span></a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="st">   </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">"identity"</span>, <span class="dt">position =</span> <span class="st">"dodge"</span> )<span class="op">+</span></a>

@@ -61,6 +61,8 @@
     phen <- arrange(phen, get(genoname))
   }
 
+  phen <- GS::checkPhen(phen)
+
   mt <- c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso") # "ASReml"
   if (sum(prior%in%mt)!=length(prior)) {
     stop("Check the prior names")
