@@ -2,7 +2,7 @@
 % Please edit documentation in R/checkPhen.R
 \name{checkPhen}
 \alias{checkPhen}
-\title{Check Phenotypic Information}
+\title{Check phenotypic Information}
 \usage{
 checkPhen(data)
 }

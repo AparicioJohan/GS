@@ -71,15 +71,15 @@
   # traits
   if(is.null(traits)) traits <- names(phen)[names(phen)!=genoname]
 
-  if (sum(traits%in%names(phen))!=length(traits)) {
-    stop("There are missings traits")
-  } else {
-    message("[]==============================================================[]")
-    message("[]==================== Genomic Prediction  =====================[]")
-    message("[]============= ASReml - BGLR - sommer package  ================[]")
-    message("[]======= Last update: 2020-03-18  Johan Aparicio ==============[]")
-    message("[]==============================================================[]\n")
-  }
+  traits <- intersect(traits, names(phen)[names(phen)!=genoname])
+
+  # Check traits in phen file  stop("There are missings traits")
+  message("[]==============================================================[]")
+  message("[]==================== Genomic Prediction  =====================[]")
+  message("[]============= ASReml - BGLR - sommer package  ================[]")
+  message("[]======= Last update: 2020-03-18  Johan Aparicio ==============[]")
+  message("[]==============================================================[]\n")
+
 
   Gen <- list()
   for (i in traits) {
