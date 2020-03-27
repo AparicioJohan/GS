@@ -1,21 +1,4 @@
 
-#' Check phenotypic Information
-#'
-#' \code{checkPhen} returns phenotypic information cleaned
-#'
-#' @param data A data.frame
-#'
-#' @return data depurated
-#' @export
-#'
-#' @examples
-#' # library(sommer)
-#' # data(DT_cpdata)
-#' # phen <- DT_cpdata
-#'
-#' # checkPhen(phen)
-#'
-#' @author Johan Aparicio, \email{j.aparicio@cgiar.org}
 checkPhen <- function(data){
 
   datafull <- type.convert(data)

@@ -68,7 +68,7 @@
     stop("Check the method names")
   }
 
-  phen <- GS::checkPhen(phen)
+  phen <- GS:::checkPhen(phen)
 
   # traits
   if(is.null(traits)) traits <- names(phen)[names(phen)!=genoname]
@@ -124,7 +124,7 @@
     Ainv.blend<-solve(AHAT_blend)
 
     rownames(Ainv.blend) <- colnames(Ainv.blend) <- NULL
-    AHAT.inv.sparse<-GS::full2sparse(Ainv.blend)  #lower diag sparse matrix (Ainv.bend)
+    AHAT.inv.sparse<-GS:::full2sparse(Ainv.blend)  #lower diag sparse matrix (Ainv.bend)
     colnames(AHAT.inv.sparse)<-c('Row','Column','Ainverse')
 
     # Preparing Ginverse

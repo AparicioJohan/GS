@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 ```
 
 
-```{r, fig.width=8}
+```{r, fig.width=8, warning=F}
  tmp <- herMarker(geno, samp, phen, method = c("RKHS","sommer"), traits=c("color","Yield"))
 ```
 

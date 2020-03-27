@@ -61,7 +61,7 @@
     phen <- arrange(phen, get(genoname))
   }
 
-  phen <- GS::checkPhen(phen)
+  phen <- GS:::checkPhen(phen)
 
   mt <- c("RKHS", "sommer", "BRR", "BayesA", "BayesB", "BayesC", "BLasso") # "ASReml"
   if (sum(prior%in%mt)!=length(prior)) {
@@ -127,7 +127,7 @@
     Ainv.blend[1:4,1:4]
 
     rownames(Ainv.blend) <- colnames(Ainv.blend) <- NULL
-    AHAT.inv.sparse<-GS::full2sparse(Ainv.blend)  #lower diag sparse matrix (Ainv.bend)
+    AHAT.inv.sparse<-GS:::full2sparse(Ainv.blend)  #lower diag sparse matrix (Ainv.bend)
     colnames(AHAT.inv.sparse)<-c('Row','Column','Ainverse')
     head(AHAT.inv.sparse)
 
