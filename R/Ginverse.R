@@ -4,7 +4,7 @@ Ginverse <- function(G){
   AHAT_blend<-0.98*A+0.02*diag(x=1,nrow=nrow(A),ncol=nrow(A))
   Ainv.blend<-solve(AHAT_blend)
   rownames(Ainv.blend) <- colnames(Ainv.blend) <- NULL
-  AHAT.inv.sparse<-GS::full2sparse(Ainv.blend)
+  AHAT.inv.sparse<-GS:::full2sparse(Ainv.blend)
   colnames(AHAT.inv.sparse)<-c('Row','Column','Ainverse')
 
   # Preparing Ginverse

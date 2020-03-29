@@ -102,6 +102,9 @@
   stI_list <- matrix(data=list(), nrow=length(traits), ncol=length(modMar),
                      dimnames=list(traits, modMar))
 
+  compGS <- data.frame(prior = as.character(), trait = as.character(), pop=as.character(),
+                       y = as.numeric(), yHat = as.numeric())
+
   #--------------------------------------------------------------------------
 
   niter <- ifelse(testporc==0,yes = 1,no = niter )
@@ -149,6 +152,8 @@
     # asr / rkhs / som / BRR / bayA / bayB / bayC / BL
     r.sqr <- r.sqr2 <- r.sqr3 <- r.sqr3 <- r.sqr4 <- r.sqr5 <- r.sqr6 <- r.sqr7 <- r.sqr8 <- c()
     corrk <- corrk2 <- corrk3 <- corrk4 <- corrk5 <- corrk6 <- corrk7 <- corrk8 <- c()
+    yhat1 <- yhat2 <- yhat3 <- yhat4 <- yhat5 <- yhat6 <- yhat7 <- yhat8 <- c()
+    yraw1 <- yraw2 <- yraw3 <- yraw4 <- yraw5 <- yraw6 <- yraw7 <- yraw8 <- c()
     fm <- fm2 <- fm3 <- fm4 <- fm5 <- fm6 <- fm7 <- fm8 <- list()
 
     for (pop in 1:niter) {
@@ -175,6 +180,9 @@
       #
       #   predGBLUPcv<-predict(fm,classify="level",sed=T)$pvals
       #   predGBLUPcv<-predGBLUPcv[,2]
+      #
+      #   yraw1 <- y[tst]
+      #   yhat1 <- predGBLUPcv[tst]
       #
       #   corrk[pop] <- cor(y[tst],predGBLUPcv[tst]) %>% round(.,4)
       #   message(prior[prior=="ASReml"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr[pop], "\t",corrk[pop], "\t" , paste0(Sys.time()))
@@ -204,6 +212,8 @@
         VarE<-fm2$varE
         r.sqr2[pop]<-round(1-VarE/Vary, 4)
 
+        yraw2 <- y[tst]
+        yhat2 <- fm2$yHat[tst]
 
         corrk2[pop] <- cor(y[tst],fm2$yHat[tst]) %>% round(.,4)
         message(prior[prior=="RKHS"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr2[pop], "\t",corrk2[pop], "\t" , paste0(Sys.time()))
@@ -229,6 +239,9 @@
         fm3$U$`u:level`$vSom <- as.data.frame(fm3$U$`u:level`$vSom)
         rownames(fm3$U$`u:level`$vSom) <- gsub("level","",rownames(fm3$U$`u:level`$vSom))
 
+        yraw3 <- y[tst]
+        yhat3 <- fm3$U$`u:level`$vSom[tst,]
+
         corrk3[pop] <- cor(fm3$U$`u:level`$vSom[tst,],y[tst], use="complete") %>% round(.,4)
 
         message(prior[prior=="sommer"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr3[pop], "\t",corrk3[pop], "\t" , paste0(Sys.time()))
@@ -249,6 +262,8 @@
         VarE<-fm4$varE
         r.sqr4[pop]<-round(1-VarE/Vary, 4)
 
+        yraw4 <- y[tst]
+        yhat4 <- fm4$yHat[tst]
 
         corrk4[pop] <- cor(y[tst],fm4$yHat[tst]) %>% round(.,4)
         message(prior[prior=="BRR"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr4[pop], "\t",corrk4[pop], "\t" , paste0(Sys.time()))
@@ -269,6 +284,8 @@
         VarE<-fm5$varE
         r.sqr5[pop]<-round(1-VarE/Vary, 4)
 
+        yraw5 <- y[tst]
+        yhat5 <- fm5$yHat[tst]
 
         corrk5[pop] <- cor(y[tst],fm5$yHat[tst]) %>% round(.,4)
         message(prior[prior=="BayesA"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr5[pop], "\t",corrk5[pop], "\t" , paste0(Sys.time()))
@@ -289,6 +306,8 @@
         VarE<-fm6$varE
         r.sqr6[pop]<-round(1-VarE/Vary, 4)
 
+        yraw6 <- y[tst]
+        yhat6 <- fm6$yHat[tst]
 
         corrk6[pop] <- cor(y[tst],fm6$yHat[tst]) %>% round(.,4)
         message(prior[prior=="BayesB"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr6[pop], "\t",corrk6[pop], "\t" , paste0(Sys.time()))
@@ -309,6 +328,8 @@
         VarE<-fm7$varE
         r.sqr7[pop]<-round(1-VarE/Vary, 4)
 
+        yraw7 <- y[tst]
+        yhat7 <- fm7$yHat[tst]
 
         corrk7[pop] <- cor(y[tst],fm7$yHat[tst]) %>% round(.,4)
         message(prior[prior=="BayesC"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr7[pop], "\t",corrk7[pop], "\t" , paste0(Sys.time()))
@@ -329,6 +350,8 @@
         VarE<-fm8$varE
         r.sqr8[pop]<-round(1-VarE/Vary, 4)
 
+        yraw8 <- y[tst]
+        yhat8 <- fm8$yHat[tst]
 
         corrk8[pop] <- cor(y[tst],fm8$yHat[tst]) %>% round(.,4)
         message(prior[prior=="BLasso"],"\t",i,"\t",paste("Pop",pop,sep="_"), "\t" ,r.sqr8[pop], "\t",corrk8[pop], "\t" , paste0(Sys.time()))
@@ -341,6 +364,11 @@
       corf <- c(corrk[pop],corrk2[pop],corrk3[pop],corrk4[pop],corrk5[pop],corrk6[pop],corrk7[pop],corrk8[pop])
       tmp = data.frame(prior = prior, trait = i, randomPop = paste0("Pop",pop), r.sqr = hf,  corr=corf , finishedAt = paste0(Sys.time()))
       out_table <- rbind(out_table,tmp)
+
+      Yraw <- c(yhat1 , yhat2 , yhat3 , yhat4 , yhat5 , yhat6 , yhat7 , yhat8 )
+      YHat <- c(yraw1 , yraw2 , yraw3 , yraw4 , yraw5 , yraw6 , yraw7 , yraw8 )
+      tmpComp <- data.frame(prior = rep(prior,each=length(tst)), trait = i, pop=paste("Pop",pop,sep="_"),y = Yraw, yHat = YHat)
+      compGS <-  rbind(compGS,tmpComp)
 
     }
 
@@ -359,6 +387,7 @@
   message("\n[]============================ End =============================[]\n")
 
   return(list(data = out_table,
-              models = stI_list ))
+              models = stI_list,
+              rawCor = compGS ))
 
 }
