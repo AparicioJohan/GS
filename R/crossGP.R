@@ -55,6 +55,7 @@
   if (inherits(phen, what = "data.frame")) {
     phen <- as.data.frame(phen)
     genoname <<- names(phen)[1]
+    phen <- arrange(phen, get(genoname))
   } else {
     phen <- data.frame(read.csv(phen))
     genoname <<- names(phen)[1]
@@ -82,10 +83,13 @@
 
 
   Gen <- list()
+  shared <- data.frame(trait=as.character(),number=as.numeric())
   for (i in traits) {
     LinesA <- as.character(phen[!is.na(phen[,i]),genoname])  # A
     LinesB <- as.character(rownames(G))                      # B
     Gen[[i]] <- intersect(LinesA,LinesB)
+    tsh <- data.frame(trait=i, number=length(intersect(LinesA,LinesB)))
+    shared <- rbind(shared,tsh)
     message(i, "\t == " ,length(intersect(LinesA,LinesB)))
   }
 
@@ -365,9 +369,9 @@
       tmp = data.frame(prior = prior, trait = i, randomPop = paste0("Pop",pop), r.sqr = hf,  corr=corf , finishedAt = paste0(Sys.time()))
       out_table <- rbind(out_table,tmp)
 
-      Yraw <- c(yhat1 , yhat2 , yhat3 , yhat4 , yhat5 , yhat6 , yhat7 , yhat8 )
-      YHat <- c(yraw1 , yraw2 , yraw3 , yraw4 , yraw5 , yraw6 , yraw7 , yraw8 )
-      tmpComp <- data.frame(prior = rep(prior,each=length(tst)), trait = i, pop=paste("Pop",pop,sep="_"),y = Yraw, yHat = YHat)
+      YHat <- c(yhat1 , yhat2 , yhat3 , yhat4 , yhat5 , yhat6 , yhat7 , yhat8 )
+      Yraw <- c(yraw1 , yraw2 , yraw3 , yraw4 , yraw5 , yraw6 , yraw7 , yraw8 )
+      tmpComp <- data.frame(prior = rep(prior,each=length(tst)), trait = i, pop=pop,y =  Yraw, yHat = YHat)
       compGS <-  rbind(compGS,tmpComp)
 
     }
@@ -388,6 +392,7 @@
 
   return(list(data = out_table,
               models = stI_list,
-              rawCor = compGS ))
+              rawCor = compGS,
+              shared = shared))
 
 }
