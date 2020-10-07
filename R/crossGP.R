@@ -371,7 +371,10 @@
 
       YHat <- c(yhat1 , yhat2 , yhat3 , yhat4 , yhat5 , yhat6 , yhat7 , yhat8 )
       Yraw <- c(yraw1 , yraw2 , yraw3 , yraw4 , yraw5 , yraw6 , yraw7 , yraw8 )
-      tmpComp <- data.frame(prior = rep(prior,each=length(tst)), trait = i, pop=pop,y =  Yraw, yHat = YHat)
+      genotype <- as.character(phen2[tst, "level"])
+      tmpComp <- data.frame(prior = rep(prior,each=length(tst)),
+                            trait = i, pop = pop, genotype ,
+                            y =  Yraw, yHat = YHat)
       compGS <-  rbind(compGS,tmpComp)
 
     }
